@@ -1,691 +1,79 @@
-\chapter{Решение задачи методом Фурье и функция Грина}
-
-Рассмотрим смешанную задачу для уравнения теплопроводности конечного
-стержня:
-
+\chapter{Метод Фурье и представление через функцию Грина}
+\section{Устранение неоднородности границ}
+Для варианта 11 решаем
 \[
-\begin{cases}
-u_t=a^2u_{xx}-bu+f(x,t),
-& 0<x<l,\quad t>0, \\[0.4em]
-u(x,0)=\phi(x),
-& 0\leq x\leq l, \\[0.4em]
-\alpha u(0,t)-\beta u_x(0,t)=\mu(t),
-& t>0, \\[0.4em]
-\gamma u(l,t)-\delta u_x(l,t)=\nu(t),
-& t>0.
-\end{cases}
-\tag{1}
+ u_t=a^2u_{xx}-bu+f,\quad u(0,t)=\mu(t),\quad -u_x(l,t)=\nu(t),
+ \quad u(x,0)=\phi(x),\qquad a>0,\ b\ge0.
 \]
-
-Здесь
-
+Пусть $\mu,\nu$ достаточно регулярны (например, $C^1$ по времени),
+а $\phi\in L^2(0,l)$ и источник допускает интегральное представление ниже.
+Линейная функция
 \[
-a>0,
-\qquad
-b\geq0,
+ \boxed{w(x,t)=\mu(t)-x\nu(t)}
 \]
-
-а коэффициенты граничных условий удовлетворяют условиям
-
+удовлетворяет обеим неоднородным границам. При $u=w+v$ получаем
 \[
-\alpha\geq0,
-\qquad
-\beta\geq0,
-\qquad
-\alpha+\beta>0,
+ v_t=a^2v_{xx}-bv+\widetilde f,\quad v(0,t)=0,\quad v_x(l,t)=0,
+ \quad v(x,0)=\widetilde\phi(x),
 \]
-
 \[
-\gamma\geq0,
-\qquad
-\delta\geq0,
-\qquad
-\gamma+\delta>0.
+ \widetilde f=f-\mu'-b\mu+x(\nu'+b\nu),
+ \qquad \widetilde\phi=\phi-\mu(0)+x\nu(0).
 \]
-
-Требуется получить решение задачи при произвольных функциях
-\(f(x,t)\), \(\phi(x)\), \(\mu(t)\) и \(\nu(t)\).
-
-\section{Устранение неоднородностей в граничных условиях}
-
-Для перехода к однородным граничным условиям представим решение в виде
-
+Такой переход является индивидуальным аналогом замены из лекции 24.
+\section{Спектральная задача}
+Ищем $-X''=\lambda X$, $X(0)=0$, $X'(l)=0$.
+Интегрирование по частям даёт
+$\lambda\int_0^lX^2dx=\int_0^l(X')^2dx>0$
+для ненулевой собственной функции. При $\lambda=k^2$
+имеем $X=C\sin(kx)$ и $\cos(kl)=0$. Поэтому
 \[
-u(x,t)=v(x,t)+w(x,t),
-\tag{2}
+ k_n=\frac{(n+\tfrac12)\pi}{l},\quad \lambda_n=k_n^2,
+ \quad X_n(x)=\sin(k_nx),\quad N_n=\frac l2,\quad n=0,1,\ldots.
 \]
-
-где функция \(w(x,t)\) выбирается так, чтобы удовлетворять исходным
-граничным условиям:
-
-\[
-\alpha w(0,t)-\beta w_x(0,t)=\mu(t),
-\tag{3}
-\]
-
-\[
-\gamma w(l,t)-\delta w_x(l,t)=\nu(t).
-\tag{4}
-\]
-
-В качестве \(w(x,t)\) удобно взять линейную по \(x\) функцию:
-
-\[
-w(x,t)=A(t)x+B(t).
-\tag{5}
-\]
-
-Тогда
-
-\[
-w_x(x,t)=A(t),
-\qquad
-w_{xx}(x,t)=0.
-\]
-
-Подстановка функции \((5)\) в условие \((3)\) даёт
-
-\[
-\alpha B(t)-\beta A(t)=\mu(t).
-\tag{6}
-\]
-
-Подстановка функции \((5)\) в условие \((4)\) приводит к равенству
-
-\[
-\gamma\bigl(lA(t)+B(t)\bigr)-\delta A(t)=\nu(t).
-\tag{7}
-\]
-
-Следовательно, функции \(A(t)\) и \(B(t)\) определяются из системы
-
-\[
-\begin{cases}
--\beta A(t)+\alpha B(t)=\mu(t),\\
-(\gamma l-\delta)A(t)+\gamma B(t)=\nu(t).
-\end{cases}
-\tag{8}
-\]
-
-Определитель системы \((8)\) равен
-
-\[
-\Delta
-=
-\begin{vmatrix}
--\beta & \alpha\\
-\gamma l-\delta & \gamma
-\end{vmatrix}
-=
-\alpha\delta-\alpha\gamma l-\beta\gamma.
-\tag{9}
-\]
-
-Предположим далее, что
-
-\[
-\Delta\ne0.
-\tag{10}
-\]
-
-Тогда из системы \((8)\) получаем
-
-\[
-A(t)
-=
-\frac{\alpha\nu(t)-\gamma\mu(t)}{\Delta},
-\tag{11}
-\]
-
-\[
-B(t)
-=
-\frac{(\gamma l-\delta)\mu(t)+\beta\nu(t)}{\Delta}.
-\tag{12}
-\]
-
-Таким образом,
-
-\[
-\boxed{
-w(x,t)
-=
-\frac{\alpha\nu(t)-\gamma\mu(t)}{\Delta}x
-+
-\frac{(\gamma l-\delta)\mu(t)+\beta\nu(t)}{\Delta}.
-}
-\tag{13}
-\]
-
-При таком выборе \(w\) функция
-
-\[
-v(x,t)=u(x,t)-w(x,t)
-\tag{14}
-\]
-
-удовлетворяет однородным граничным условиям
-
-\[
-\alpha v(0,t)-\beta v_x(0,t)=0,
-\tag{15}
-\]
-
-\[
-\gamma v(l,t)-\delta v_x(l,t)=0.
-\tag{16}
-\]
-
-Действительно, например, при \(x=0\) имеем
-
-\[
-\begin{aligned}
-\alpha v(0,t)-\beta v_x(0,t)
-={}&
-\alpha\bigl(u(0,t)-w(0,t)\bigr) \\
-&-\beta\bigl(u_x(0,t)-w_x(0,t)\bigr) \\
-={}&
-\bigl(\alpha u(0,t)-\beta u_x(0,t)\bigr)
--\bigl(\alpha w(0,t)-\beta w_x(0,t)\bigr) \\
-={}& \mu(t)-\mu(t)=0.
-\end{aligned}
-\]
-
-Аналогично проверяется условие при \(x=l\).
-
-\section{Задача для новой функции}
-
-Так как
-
-\[
-u=v+w,
-\]
-
-то
-
-\[
-u_t=v_t+w_t,
-\qquad
-u_{xx}=v_{xx}+w_{xx}=v_{xx}.
-\]
-
-Подставляя это в уравнение \((1)\), получаем
-
-\[
-v_t+w_t
-=
-a^2v_{xx}-b(v+w)+f(x,t).
-\]
-
-Следовательно,
-
-\[
-v_t
-=
-a^2v_{xx}-bv+\widetilde{f}(x,t),
-\tag{17}
-\]
-
-где
-
-\[
-\widetilde{f}(x,t)
-=
-f(x,t)-w_t(x,t)-bw(x,t).
-\tag{18}
-\]
-
-Поскольку функция \(w\) линейна по \(x\), имеем
-
-\[
-w_t(x,t)=A'(t)x+B'(t).
-\]
-
-Поэтому
-
-\[
-\widetilde{f}(x,t)
-=
-f(x,t)
--\bigl(A'(t)+bA(t)\bigr)x
--\bigl(B'(t)+bB(t)\bigr).
-\tag{19}
-\]
-
-Начальное условие для функции \(v\) имеет вид
-
-\[
-v(x,0)=\widetilde{\phi}(x),
-\tag{20}
-\]
-
-где
-
-\[
-\widetilde{\phi}(x)=\phi(x)-w(x,0).
-\tag{21}
-\]
-
-Итак, функция \(v(x,t)\) удовлетворяет задаче
-
-\[
-\begin{cases}
-v_t=a^2v_{xx}-bv+\widetilde{f}(x,t),
-& 0<x<l,\quad t>0,\\[0.4em]
-v(x,0)=\widetilde{\phi}(x),
-& 0\leq x\leq l,\\[0.4em]
-\alpha v(0,t)-\beta v_x(0,t)=0,
-& t>0,\\[0.4em]
-\gamma v(l,t)-\delta v_x(l,t)=0,
-& t>0.
-\end{cases}
-\tag{22}
-\]
-
-\section{Задача на собственные значения}
-
-Для решения задачи \((22)\) методом Фурье рассмотрим спектральную
-задачу
-
-\[
-X''(x)+\lambda X(x)=0,
-\qquad
-0<x<l,
-\tag{23}
-\]
-
-с однородными граничными условиями
-
-\[
-\alpha X(0)-\beta X'(0)=0,
-\tag{24}
-\]
-
-\[
-\gamma X(l)-\delta X'(l)=0.
-\tag{25}
-\]
-
-Это задача Штурма--Лиувилля. Её собственные значения обозначим через
-
-\[
-\lambda_1,\lambda_2,\ldots,
-\]
-
-а соответствующие собственные функции --- через
-
-\[
-X_1(x),X_2(x),\ldots.
-\]
-
-Собственные функции ортогональны на отрезке \([0,l]\):
-
-\[
-\int_0^l X_n(x)X_m(x)\,dx=0,
-\qquad
-n\ne m.
-\tag{26}
-\]
-
-Обозначим нормирующие множители:
-
-\[
-N_n=\int_0^l X_n^2(x)\,dx.
-\tag{27}
-\]
-
-Для явного нахождения собственных функций рассмотрим случай
-\(\lambda=\rho^2\), \(\rho\geq0\). Общее решение уравнения \((23)\)
-имеет вид
-
-\[
-X(x)=C_1\cos\rho x+C_2\sin\rho x.
-\]
-
-Удобно выбрать собственную функцию в форме
-
-\[
-X_\rho(x)=
-\beta\rho\cos\rho x+\alpha\sin\rho x.
-\tag{28}
-\]
-
-Действительно,
-
-\[
-X_\rho(0)=\beta\rho,
-\qquad
-X_\rho'(0)=\alpha\rho,
-\]
-
-и поэтому
-
-\[
-\alpha X_\rho(0)-\beta X_\rho'(0)
-=
-\alpha\beta\rho-\beta\alpha\rho=0.
-\]
-
-Подстановка функции \((28)\) в граничное условие при \(x=l\) даёт
-характеристическое уравнение:
-
-\[
-\boxed{
-(\alpha\gamma-\beta\delta\rho^2)\sin\rho l
-+
-(\beta\gamma+\alpha\delta)\rho\cos\rho l
-=
-0.
-}
-\tag{29}
-\]
-
-Пусть \(\rho_n\) --- положительные корни уравнения \((29)\). Тогда
-
-\[
-\lambda_n=\rho_n^2,
-\tag{30}
-\]
-
-а соответствующие собственные функции можно выбрать в виде
-
-\[
-\boxed{
-X_n(x)
-=
-\beta\rho_n\cos(\rho_n x)
-+
-\alpha\sin(\rho_n x).
-}
-\tag{31}
-\]
-
-Если \(\lambda=0\) является собственным значением, то оно должно
-рассматриваться отдельно. В этом случае
-
-\[
-X(x)=C_1x+C_2,
-\]
-
-и ненулевое решение существует при выполнении условия
-
-\[
-\boxed{
-\alpha\gamma l-\alpha\delta-\beta\gamma=0.
-}
-\tag{32}
-\]
-
-При наличии нулевого собственного значения его собственная функция
-также включается в последующие разложения.
-
-\section{Разложение решения в ряд Фурье}
-
-Ищем решение задачи \((22)\) в форме ряда Фурье:
-
-\[
-v(x,t)=\sum_{n=1}^{\infty}T_n(t)X_n(x).
-\tag{33}
-\]
-
-Разложим функцию \(\widetilde{f}(x,t)\) по собственным функциям:
-
-\[
-\widetilde{f}(x,t)
-=
-\sum_{n=1}^{\infty}\widetilde{f}_n(t)X_n(x),
-\tag{34}
-\]
-
-где
-
-\[
-\widetilde{f}_n(t)
-=
-\frac{1}{N_n}
-\int_0^l \widetilde{f}(\xi,t)X_n(\xi)\,d\xi.
-\tag{35}
-\]
-
-Начальное условие разлагается так:
-
-\[
-\widetilde{\phi}(x)
-=
-\sum_{n=1}^{\infty}\widetilde{\phi}_n X_n(x),
-\tag{36}
-\]
-
-где
-
-\[
-\widetilde{\phi}_n
-=
-\frac{1}{N_n}
-\int_0^l \widetilde{\phi}(\xi)X_n(\xi)\,d\xi.
-\tag{37}
-\]
-
-Подставим разложение \((33)\) в уравнение \((17)\). Так как
-
-\[
-X_n''(x)=-\lambda_n X_n(x),
-\]
-
-то получаем
-
-\[
-\sum_{n=1}^{\infty}T_n'(t)X_n(x)
-=
--\sum_{n=1}^{\infty}
-\bigl(a^2\lambda_n+b\bigr)T_n(t)X_n(x)
-+
-\sum_{n=1}^{\infty}\widetilde{f}_n(t)X_n(x).
-\]
-
-В силу ортогональности собственных функций для каждого \(n\) имеем
-
-\[
-T_n'(t)
-+
-\bigl(a^2\lambda_n+b\bigr)T_n(t)
-=
-\widetilde{f}_n(t).
-\tag{38}
-\]
-
+Здесь нет ни нулевой, ни отрицательной моды.
+\section{Модальные уравнения}
 Обозначим
-
 \[
-\sigma_n=a^2\lambda_n+b.
-\tag{39}
+ \sigma_n=a^2k_n^2+b,\qquad
+ c_n=\frac2l\int_0^l\widetilde\phi(\xi)\sin(k_n\xi)\,d\xi,
+\quad F_n(t)=\frac2l\int_0^l\widetilde f(\xi,t)\sin(k_n\xi)\,d\xi.
 \]
-
-Тогда задача для коэффициента \(T_n(t)\) имеет вид
-
+Разложение $v=\sum_nT_nX_n$ даёт
 \[
-T_n'(t)+\sigma_nT_n(t)=\widetilde{f}_n(t),
-\qquad
-T_n(0)=\widetilde{\phi}_n.
+ T_n'+\sigma_nT_n=F_n,\quad T_n(0)=c_n,
+\qquad T_n(t)=c_ne^{-\sigma_nt}+\int_0^te^{-\sigma_n(t-\tau)}F_n(\tau)\,d\tau.
 \]
-
-Её решение равно
-
-\[
-T_n(t)
-=
-e^{-\sigma_nt}\widetilde{\phi}_n
-+
-\int_0^t e^{-\sigma_n(t-\tau)}
-\widetilde{f}_n(\tau)\,d\tau.
-\tag{40}
-\]
-
 Следовательно,
-
 \[
-\boxed{
-\begin{aligned}
-v(x,t)
-={}&
-\sum_{n=1}^{\infty}
-e^{-\sigma_nt}\widetilde{\phi}_n X_n(x) \\
-&+
-\sum_{n=1}^{\infty}
-X_n(x)
-\int_0^t
-e^{-\sigma_n(t-\tau)}
-\widetilde{f}_n(\tau)\,d\tau.
-\end{aligned}
-}
-\tag{41}
+ \boxed{u(x,t)=\mu(t)-x\nu(t)+\sum_{n=0}^{\infty}\sin(k_nx)
+ \left[c_ne^{-\sigma_nt}+\int_0^te^{-\sigma_n(t-\tau)}F_n(\tau)\,d\tau\right].}
 \]
-
-Так как \(u=v+w\), окончательно получаем
-
+Если $f_n=(2/l)\int_0^lf(\xi,t)\sin(k_n\xi)d\xi$, то
 \[
-\boxed{
-u(x,t)=w(x,t)+v(x,t),
-}
-\tag{42}
+ F_n=f_n-\frac{2(\mu'+b\mu)}{lk_n}
+       +\frac{2(-1)^n(\nu'+b\nu)}{lk_n^2}.
 \]
-
-где функция \(w(x,t)\) определяется формулой \((13)\), а функция
-\(v(x,t)\) --- формулой \((41)\).
-
+Использованы интегралы
+$\int_0^l\sin(k_n\xi)d\xi=1/k_n$,
+$\int_0^l\xi\sin(k_n\xi)d\xi=(-1)^n/k_n^2$.
 \section{Функция Грина}
-
-Введём функцию Грина однородной задачи \((22)\):
-
+Введём тепловое ядро
 \[
-\boxed{
-G(x,\xi,t)
-=
-\sum_{n=1}^{\infty}
-\frac{X_n(x)X_n(\xi)}{N_n}
-e^{-\sigma_nt},
-\qquad
-t>0.
-}
-\tag{43}
+ \boxed{G(x,\xi,t)=\frac2l\sum_{n=0}^{\infty}
+ \sin(k_nx)\sin(k_n\xi)e^{-(a^2k_n^2+b)t},\quad t>0.}
 \]
-
-Здесь
-
+Тогда окончательная формула имеет вид
 \[
-\sigma_n=a^2\lambda_n+b.
+\boxed{\begin{aligned}
+ u(x,t)={}&\mu(t)-x\nu(t)
+ +\int_0^lG(x,\xi,t)[\phi(\xi)-\mu(0)+\xi\nu(0)]\,d\xi\\
+ &+\int_0^t\int_0^lG(x,\xi,t-\tau)
+ [f(\xi,\tau)-\mu'(\tau)-b\mu(\tau)
+       +\xi(\nu'(\tau)+b\nu(\tau))]\,d\xi\,d\tau.
+\end{aligned}}
 \]
-
-Тогда первый член решения \((41)\) можно записать в виде
-
-\[
-\sum_{n=1}^{\infty}
-e^{-\sigma_nt}\widetilde{\phi}_n X_n(x)
-=
-\int_0^l G(x,\xi,t)\widetilde{\phi}(\xi)\,d\xi.
-\tag{44}
-\]
-
-А второй член имеет представление
-
-\[
-\sum_{n=1}^{\infty}
-X_n(x)
-\int_0^t
-e^{-\sigma_n(t-\tau)}
-\widetilde{f}_n(\tau)\,d\tau
-=
-\int_0^t\int_0^l
-G(x,\xi,t-\tau)
-\widetilde{f}(\xi,\tau)\,d\xi\,d\tau.
-\tag{45}
-\]
-
-Следовательно, решение однородной по граничным условиям задачи \((22)\)
-через функцию Грина имеет вид
-
-\[
-\boxed{
-\begin{aligned}
-v(x,t)
-={}&
-\int_0^l
-G(x,\xi,t)\widetilde{\phi}(\xi)\,d\xi \\
-&+
-\int_0^t\int_0^l
-G(x,\xi,t-\tau)
-\widetilde{f}(\xi,\tau)\,d\xi\,d\tau.
-\end{aligned}
-}
-\tag{46}
-\]
-
-С учётом замены \(u=v+w\) получаем решение исходной задачи \((1)\):
-
-\[
-\boxed{
-\begin{aligned}
-u(x,t)
-={}&
-w(x,t) \\
-&+
-\int_0^l
-G(x,\xi,t)
-\bigl(\phi(\xi)-w(\xi,0)\bigr)\,d\xi \\
-&+
-\int_0^t\int_0^l
-G(x,\xi,t-\tau)
-\bigl(
-f(\xi,\tau)
--w_t(\xi,\tau)
--bw(\xi,\tau)
-\bigr)
-\,d\xi\,d\tau.
-\end{aligned}
-}
-\tag{47}
-\]
-
-Здесь
-
-\[
-w(x,t)
-=
-\frac{\alpha\nu(t)-\gamma\mu(t)}{\Delta}x
-+
-\frac{(\gamma l-\delta)\mu(t)+\beta\nu(t)}{\Delta},
-\]
-
-\[
-\Delta
-=
-\alpha\delta-\alpha\gamma l-\beta\gamma,
-\]
-
-а функция Грина задаётся рядом
-
-\[
-G(x,\xi,t)
-=
-\sum_{n=1}^{\infty}
-\frac{X_n(x)X_n(\xi)}{N_n}
-\exp\bigl(-(a^2\lambda_n+b)t\bigr).
-\]
-
-Собственные функции \(X_n(x)\) являются решениями спектральной задачи
-
-\[
-X_n''+\lambda_nX_n=0,
-\]
-
-\[
-\alpha X_n(0)-\beta X_n'(0)=0,
-\]
-
-\[
-\gamma X_n(l)-\delta X_n'(l)=0.
-\]
-
-Таким образом, формула \((47)\) задаёт решение исходной задачи для
-произвольных функций \(f(x,t)\), \(\phi(x)\), \(\mu(t)\) и \(\nu(t)\)
-через функцию Грина.
+Начальные данные восстанавливаются в $L^2$, а при достаточной гладкости
+и согласовании --- в классическом смысле. Формула учитывает произвольные
+индивидуальные неоднородности; подставлять гармоники нужно лишь при
+решении соответствующего практического пункта.

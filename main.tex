@@ -1,216 +1,70 @@
 \documentclass[a4paper,12pt,titlepage]{report}
-
-% ============================================================
-% Компилировать XeLaTeX или LuaLaTeX.
-% ============================================================
 \usepackage{iftex}
-\ifPDFTeX
-  \PackageError{main}{Use XeLaTeX or LuaLaTeX instead of pdfLaTeX}
-    {Compile the document with XeLaTeX or LuaLaTeX.}
-\fi
-
-% ============================================================
-% Шрифт и языки
-% ============================================================
+\ifPDFTeX\PackageError{main}{Use XeLaTeX or LuaLaTeX}{Select XeLaTeX or LuaLaTeX.}\fi
 \usepackage{fontspec}
 \defaultfontfeatures{Ligatures=TeX}
-\setmainfont{Times New Roman}
-
+\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{\setmainfont{DejaVu Serif}}
 \usepackage[main=russian,english]{babel}
-
-% ============================================================
-% Основные пакеты
-% ============================================================
-\usepackage{amsmath,amssymb,amsfonts,amsthm}
-\usepackage{mathtext}
-\usepackage{enumerate}
-\usepackage{enumitem}
-\usepackage{float}
-\usepackage{graphicx}
-\usepackage{placeins}
-\usepackage{geometry}
-\usepackage[onehalfspacing]{setspace}
-\usepackage{indentfirst}
-\usepackage{titlesec}
-\usepackage[font=small,tableposition=top]{caption}
-\usepackage{subcaption}
-\usepackage[title,titletoc]{appendix}
-\usepackage[square,numbers,sort&compress]{natbib}
-\usepackage{listings}
-\usepackage{xcolor}
-
-% Путь к рисункам.
-\graphicspath{{figure/}}
-
-% ============================================================
-% Поля страницы
-% ============================================================
-\geometry{
-  left=2.5cm,
-  right=1.5cm,
-  top=2cm,
-  bottom=2cm
-}
-
-% ============================================================
-% Форматирование заголовков
-% ============================================================
-\titleformat{\chapter}[display]
-  {\filcenter\bfseries}
-  {\MakeUppercase{\chaptertitlename} \thechapter}
-  {8pt}
-  {\MakeUppercase}
-
-\titleformat{\section}
-  {\normalsize\bfseries}
-  {\thesection.}
-  {1em}
-  {}
-
-\titleformat{\subsection}
-  {\normalsize\bfseries}
-  {\thesubsection.}
-  {1em}
-  {}
-
-\titlespacing*{\chapter}{0pt}{-30pt}{8pt}
-\titlespacing*{\section}{\parindent}{4\baselineskip}{\baselineskip}
-\titlespacing*{\subsection}{\parindent}{4\baselineskip}{\baselineskip}
-
-% ============================================================
-% Оглавление
-% ============================================================
-\renewcommand{\contentsname}{Содержание}
-
-% В оглавлении выводить главы и разделы.
+\usepackage{amsmath,amssymb,amsthm,graphicx,geometry,setspace,indentfirst,titlesec,enumitem,caption,pgfplots}
+\pgfplotsset{compat=1.18}
+\geometry{left=2.5cm,right=1.5cm,top=2cm,bottom=2cm}
+\titleformat{\chapter}[display]{\centering\bfseries}{ГЛАВА \thechapter}{8pt}{\MakeUppercase}
+\titleformat{\section}{\normalsize\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+\titlespacing*{\chapter}{0pt}{-20pt}{12pt}
+\titlespacing*{\section}{0pt}{2\baselineskip}{\baselineskip}
+\titlespacing*{\subsection}{0pt}{\baselineskip}{.5\baselineskip}
 \setcounter{tocdepth}{1}
-
-% ============================================================
-% Подписи рисунков и таблиц
-% ============================================================
-\DeclareCaptionLabelFormat{gostfigure}{Рисунок #2}
-\DeclareCaptionLabelFormat{gosttable}{Таблица #2}
-\DeclareCaptionLabelSeparator{gost}{. }
-
-\captionsetup{labelsep=gost}
-\captionsetup[figure]{labelformat=gostfigure}
-\captionsetup[table]{labelformat=gosttable}
-
-\renewcommand{\thesubfigure}{\asbuk{subfigure}}
-
-% ============================================================
-% Списки
-% ============================================================
-\setlist{nolistsep}
-\renewcommand{\labelitemi}{-}
-\renewcommand{\labelenumi}{\asbuk{enumi})}
-\renewcommand{\labelenumii}{\arabic{enumii})}
-
-% ============================================================
-% Приложения
-% ============================================================
-\newcommand{\append}[1]{%
-  \clearpage
-  \chapter*{\MakeUppercase{#1}}%
-  \addcontentsline{toc}{chapter}{\MakeUppercase{#1}}%
-}
-
-% ============================================================
-% Библиография
-% ============================================================
-\bibliographystyle{utf8gost705u}
-\renewcommand{\bibnumfmt}[1]{#1.\hfill}
-\setlength{\bibsep}{0pt}
-
-\renewcommand{\bibsection}{%
-  \chapter*{Список литературы}%
-  \addcontentsline{toc}{chapter}{Список литературы}%
-}
-
-% ============================================================
-% Листинги кода
-% ============================================================
-\lstdefinestyle{customc}{
-  belowcaptionskip=1\baselineskip,
-  breaklines=true,
-  frame=L,
-  xleftmargin=\parindent,
-  showstringspaces=false,
-  basicstyle=\footnotesize\ttfamily,
-  keywordstyle=\bfseries\color{green!40!black},
-  commentstyle=\itshape\color{purple!40!black},
-  identifierstyle=\color{blue},
-  stringstyle=\color{orange},
-  numbers=left,
-  numberstyle=\tiny
-}
-
-\lstdefinestyle{customasm}{
-  belowcaptionskip=1\baselineskip,
-  breaklines=true,
-  frame=L,
-  xleftmargin=\parindent,
-  language=[x86masm]Assembler,
-  basicstyle=\footnotesize\ttfamily,
-  commentstyle=\itshape\color{purple!40!black}
-}
-
-% ============================================================
-% Теоремы и формулы
-% ============================================================
-\theoremstyle{plain}
-
-\newtheorem{thm}{Theorem}[section]
-\newtheorem{St}{Утверждение}
-\newtheorem{Th}{Теорема}
-\newtheorem{Cor}{Следствие}
-\newtheorem{Lm}{Лемма}
-
-% Сквозная нумерация формул.
-\counterwithout{equation}{section}
+\setcounter{secnumdepth}{3}
+\renewcommand{\contentsname}{Содержание}
+\setlist{nosep}
 \counterwithout{equation}{chapter}
-
-% ============================================================
-% Начало документа
-% ============================================================
+\let\originalsection\section
+\let\originalsubsection\subsection
+\let\originalsubsubsection\subsubsection
+% Существующие файлы тем сохранены; понижаем их заголовки на уровень.
+\newcommand{\topicinput}[1]{\begingroup
+\let\chapter\originalsection
+\let\section\originalsubsection
+\let\subsection\originalsubsubsection
+\input{#1}\endgroup}
 \begin{document}
-
 \singlespacing
-
-% Если файл называется title.tex:
-\input{title}
-
-% Если у вас файл называется title-2.tex, используйте вместо
-% предыдущей строки следующую:
-% \input{title-2}
-
-% Титульный лист — первая страница, номер не показывается.
+% Логотип отсутствует в исходном репозитории; титульные данные сохранены.
+\begingroup\renewcommand{\includegraphics}[2][]{}\input{title}\endgroup
 \setcounter{page}{2}
-
-\onehalfspacing
-\setlength{\parindent}{1.25cm}
-
+\onehalfspacing\setlength{\parindent}{1.25cm}
 \tableofcontents
-
-\input{theor_1}
-\input{theor_2}
-\input{theor_3}
-\input{theor_4}
-\input{prac_1}
-\input{prac_2}
-\input{prac_3}
-\input{prac_4}
-\input{prac_5}
-\input{prac_6}
-
-% ============================================================
-% Основной текст размещайте после этой строки.
-%
-% \chapter{Название главы}
-% \section{Название раздела}
-% Текст работы.
-%
-% \bibliography{references}
-% ============================================================
-
+\chapter{Теоретическая часть}
+\noindent Вариант 11: первый род на левом торце, второй род на правом.
+В общей нормировке задания используем $u(0,t)=\mu(t)$,
+$-u_x(l,t)=\nu(t)$. В лекциях теплоёмкость записана как $c_{\rm уд}\rho$;
+здесь $c=c_{\rm уд}\rho$ обозначает объёмную теплоёмкость.
+\topicinput{theor_1}
+\topicinput{theor_2}
+\topicinput{theor_3}
+\topicinput{theor_4}
+\chapter{Практическая часть}
+\topicinput{prac_1}
+\topicinput{prac_2}
+\topicinput{prac_3}
+\paragraph{Уточнение постановки третьей темы.}
+Если слова <<первая задача>> относятся к практическому пункту 1,
+в формулах предыдущей темы следует положить $b=0$, $f=0$, $\phi(x)=x$.
+Именно этот случай является обязательной специализацией для изолированного
+стержня. Формулы с $b>0$ приведены как обобщение, а не как замена задания.
+При подборе других воздействий сохраняются типы границ, но изменяется
+временная функция на левом торце. В рамках только заданных вещественных
+гармоник растущий режим получить невозможно.
+\topicinput{prac_4}
+\topicinput{prac_5}
+\topicinput{prac_6}
+\section{Численная проверка аналитических формул}
+\input{verification}
+\section*{Использованные материалы}
+\addcontentsline{toc}{section}{Использованные материалы}
+Лабораторная работа № 4 <<Распространение тепла в конечном стержне>>,
+вариант 11, стр. 1--4. Книга <<ВсеЛекцииУмф-2.pdf>>: лекция 21,
+стр. PDF 129--132; лекция 22, стр. PDF 133--136; лекция 24,
+стр. PDF 144--147 (метод Фурье и устранение неоднородности границ).
 \end{document}
