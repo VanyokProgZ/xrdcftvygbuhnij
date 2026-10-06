@@ -22,7 +22,7 @@
 \let\originalsection\section
 \let\originalsubsection\subsection
 \let\originalsubsubsection\subsubsection
-% Существующие файлы тем сохранены; понижаем их заголовки на уровень.
+% Темы становятся разделами, их внутренние заголовки — подразделами.
 \newcommand{\topicinput}[1]{\begingroup
 \let\chapter\originalsection
 \let\section\originalsubsection
@@ -30,7 +30,7 @@
 \input{#1}\endgroup}
 \begin{document}
 \singlespacing
-% Логотип отсутствует в исходном репозитории; титульные данные сохранены.
+% Логотип отсутствует в репозитории; титульные данные сохранены.
 \begingroup\renewcommand{\includegraphics}[2][]{}\input{title}\endgroup
 \setcounter{page}{2}
 \onehalfspacing\setlength{\parindent}{1.25cm}
@@ -48,14 +48,6 @@ $-u_x(l,t)=\nu(t)$. В лекциях теплоёмкость записана 
 \topicinput{prac_1}
 \topicinput{prac_2}
 \topicinput{prac_3}
-\paragraph{Уточнение постановки третьей темы.}
-Если слова <<первая задача>> относятся к практическому пункту 1,
-в формулах предыдущей темы следует положить $b=0$, $f=0$, $\phi(x)=x$.
-Именно этот случай является обязательной специализацией для изолированного
-стержня. Формулы с $b>0$ приведены как обобщение, а не как замена задания.
-При подборе других воздействий сохраняются типы границ, но изменяется
-временная функция на левом торце. В рамках только заданных вещественных
-гармоник растущий режим получить невозможно.
 \topicinput{prac_4}
 \topicinput{prac_5}
 \topicinput{prac_6}
