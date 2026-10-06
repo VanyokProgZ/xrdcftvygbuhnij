@@ -6,6 +6,7 @@
 \IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{\setmainfont{DejaVu Serif}}
 \usepackage[main=russian,english]{babel}
 \usepackage{amsmath,amssymb,amsthm,graphicx,geometry,setspace,indentfirst,titlesec,enumitem,caption,pgfplots}
+\graphicspath{{figure/}}
 \pgfplotsset{compat=1.18}
 \geometry{left=2.5cm,right=1.5cm,top=2cm,bottom=2cm}
 \titleformat{\chapter}[display]{\centering\bfseries}{ГЛАВА \thechapter}{8pt}{\MakeUppercase}
@@ -30,8 +31,7 @@
 \input{#1}\endgroup}
 \begin{document}
 \singlespacing
-% Логотип отсутствует в репозитории; титульные данные сохранены.
-\begingroup\renewcommand{\includegraphics}[2][]{}\input{title}\endgroup
+\input{title}
 \setcounter{page}{2}
 \onehalfspacing\setlength{\parindent}{1.25cm}
 \tableofcontents
