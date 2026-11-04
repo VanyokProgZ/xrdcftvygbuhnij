@@ -8,7 +8,11 @@ u_t=a^2u_{xx},\qquad u(x,0)=x .
 u_x(0,t)=0,\qquad u_x(l,t)=0 .
 \]
 
-Решаем методом Фурье. Задача $X''+\lambda X=0$, $X'(0)=X'(l)=0$ даёт
+Решаем методом Фурье: ищем решения вида $u(x,t)=X(x)T(t)$. Подставляя в уравнение и разделяя переменные, получаем
+\[
+\frac{T'}{a^2T}=\frac{X''}{X}=-\lambda,\qquad X''+\lambda X=0,\quad X'(0)=0,\quad X'(l)=0,\qquad T'+a^2\lambda T=0 .
+\]
+Отсюда
 \[
 \lambda_n=\Bigl(\frac{\pi n}{l}\Bigr)^2,\qquad X_n=\cos\frac{\pi nx}{l},\qquad n=0,1,2,\dots,
 \]

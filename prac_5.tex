@@ -14,7 +14,11 @@ a^2\Bigl(g''+\frac2rg'\Bigr)=\frac{3a^2q}{kR},\qquad k\,g'(R)=q\quad\Rightarrow\
 v_t=a^2\Bigl(v_{rr}+\frac2rv_r\Bigr),\qquad v_r(R,t)=0,\qquad v(r,0)=-g(r).
 \]
 
-\textbf{Метод Фурье.} Замена $v=w/r$ даёт $w_t=a^2w_{rr}$, $w(0,t)=0$, $Rw_r(R,t)-w(R,t)=0$. Собственные функции $\sin\frac{\mu r}{R}$, где $\mu_n$~--- положительные корни уравнения
+\textbf{Метод Фурье.} Замена $v=w/r$ даёт $w_t=a^2w_{rr}$, $w(0,t)=0$, $Rw_r(R,t)-w(R,t)=0$. Ищем решения вида $w(r,t)=X(r)T(t)$:
+\[
+X''+\lambda X=0,\quad X(0)=0,\quad RX'(R)-X(R)=0,\qquad T'+a^2\lambda T=0 .
+\]
+Из $X(0)=0$ следует $X=\sin\sqrt\lambda r$, а условие при $r=R$ с $\mu=\sqrt\lambda R$ даёт $\mu\cos\mu-\sin\mu=0$. Собственные функции $\sin\frac{\mu_nr}{R}$, $T_n=e^{-a^2\mu_n^2t/R^2}$, где $\mu_n$~--- положительные корни уравнения
 \[
 \operatorname{tg}\mu=\mu\qquad(\mu_1\approx4.4934,\ \mu_2\approx7.7253,\ \mu_3\approx10.9041,\dots),
 \]

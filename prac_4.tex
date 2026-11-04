@@ -15,7 +15,7 @@ U_0(x)=\frac{A\operatorname{ch}\kappa(l-x)-\frac B\kappa\operatorname{sh}\kappa 
 U(x)=u_{\text{ср}}+\frac{(A-u_{\text{ср}})\operatorname{ch}\kappa(l-x)-\frac B\kappa\operatorname{sh}\kappa x}{\operatorname{ch}\kappa l}.
 \]
 
-\textbf{Полное решение.} Функция $v=u-U$ решает задачу $v_t=a^2v_{xx}-bv$, $v(0,t)=0$, $v_x(l,t)=0$, $v(x,0)=x-U(x)$, поэтому $v=\sum D_ne^{-(a^2p_n^2+b)t}\sin p_nx$. Коэффициенты $U$ находим, умножая $U''=\kappa^2(U-u_{\text{ср}})$ на $\sin p_nx$ и дважды интегрируя по частям:
+\textbf{Полное решение.} Функция $v=u-U$ решает задачу $v_t=a^2v_{xx}-bv$, $v(0,t)=0$, $v_x(l,t)=0$, $v(x,0)=x-U(x)$, которую решаем методом Фурье: решения вида $v(x,t)=X(x)T(t)$, как в п.~\ref{sec:green}, дают $v=\sum D_ne^{-(a^2p_n^2+b)t}\sin p_nx$. Коэффициенты $U$ находим, умножая $U''=\kappa^2(U-u_{\text{ср}})$ на $\sin p_nx$ и дважды интегрируя по частям:
 \[
 \frac2l\int_0^lU\sin p_nx\,dx=\frac2l\cdot\frac{Ap_n+(-1)^nB+\kappa^2u_{\text{ср}}/p_n}{p_n^2+\kappa^2}.
 \]

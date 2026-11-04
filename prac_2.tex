@@ -11,7 +11,7 @@ U(x)=A-Bx .
 \[
 v_t=a^2v_{xx},\qquad v(0,t)=0,\qquad v_x(l,t)=0,\qquad v(x,0)=(1+B)x-A .
 \]
-С собственными функциями $\sin p_nx$, $p_n=\frac{(2n-1)\pi}{2l}$ (п.~\ref{sec:green}), и интегралами
+Решаем методом Фурье: ищем решения вида $v(x,t)=X(x)T(t)$. Как в п.~\ref{sec:green} (при $b=0$), получаем $X_n=\sin p_nx$, $p_n=\frac{(2n-1)\pi}{2l}$, $T_n=D_ne^{-a^2p_n^2t}$. Коэффициенты $D_n$ находим из начального условия с помощью интегралов
 \[
 \frac2l\int_0^l\sin p_nx\,dx=\frac{2}{lp_n},\qquad \frac2l\int_0^lx\sin p_nx\,dx=\frac{2(-1)^{n+1}}{lp_n^2}
 \]
