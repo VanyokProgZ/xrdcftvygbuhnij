@@ -1,35 +1,35 @@
 \section{Задача 4}
-Решаем задачу 2 при теплообмене через боковую поверхность со средой температуры $\theta=\mathrm{const}$ (п.~\ref{sec:deriv}: $b=\frac{hP}{c\rho S}>0$, $f=b\theta$):
+Решаем задачу 2 при теплообмене через боковую поверхность со средой температуры $u_{\text{ср}}=\mathrm{const}$ (п.~\ref{sec:deriv}: $b=\frac{hP}{c\rho S}>0$, $f=bu_{\text{ср}}$):
 \[
-u_t=a^2u_{xx}-b(u-\theta),\qquad u(x,0)=x,\qquad u(0,t)=A,\qquad -u_x(l,t)=B .
+u_t=a^2u_{xx}-b(u-u_{\text{ср}}),\qquad u(x,0)=x,\qquad u(0,t)=A,\qquad -u_x(l,t)=B .
 \]
 Обозначим $\kappa=\sqrt b/a$.
 
-\textbf{Температура среды равна нулю} ($\theta=0$). Стационарный режим: $U''-\kappa^2U=0$, $U(0)=A$, $U'(l)=-B$. Из $U=C_1\operatorname{ch}\kappa x+C_2\operatorname{sh}\kappa x$ находим $C_1=A$, $C_2=-\frac{A\operatorname{sh}\kappa l+B/\kappa}{\operatorname{ch}\kappa l}$, т.\,е.
+\textbf{Температура среды равна нулю} ($u_{\text{ср}}=0$). Стационарный режим: $U''-\kappa^2U=0$, $U(0)=A$, $U'(l)=-B$. Из $U=C_1\operatorname{ch}\kappa x+C_2\operatorname{sh}\kappa x$ находим $C_1=A$, $C_2=-\frac{A\operatorname{sh}\kappa l+B/\kappa}{\operatorname{ch}\kappa l}$, т.\,е.
 \[
 U_0(x)=\frac{A\operatorname{ch}\kappa(l-x)-\frac B\kappa\operatorname{sh}\kappa x}{\operatorname{ch}\kappa l}.
 \]
 
-\textbf{Температура среды постоянна.} Замена $u=\theta+w$ приводит к случаю $\theta=0$ для $w$ с $A$, заменённым на $A-\theta$ ($B$ не меняется), поэтому
+\textbf{Температура среды постоянна.} Замена $u=u_{\text{ср}}+w$ приводит к случаю $u_{\text{ср}}=0$ для $w$ с $A$, заменённым на $A-u_{\text{ср}}$ ($B$ не меняется), поэтому
 \[
-U(x)=\theta+\frac{(A-\theta)\operatorname{ch}\kappa(l-x)-\frac B\kappa\operatorname{sh}\kappa x}{\operatorname{ch}\kappa l}.
+U(x)=u_{\text{ср}}+\frac{(A-u_{\text{ср}})\operatorname{ch}\kappa(l-x)-\frac B\kappa\operatorname{sh}\kappa x}{\operatorname{ch}\kappa l}.
 \]
 
-\textbf{Полное решение.} Функция $v=u-U$ решает задачу $v_t=a^2v_{xx}-bv$, $v(0,t)=0$, $v_x(l,t)=0$, $v(x,0)=x-U(x)$, поэтому $v=\sum D_ne^{-(a^2p_n^2+b)t}\sin p_nx$. Коэффициенты $U$ находим, умножая $U''=\kappa^2(U-\theta)$ на $\sin p_nx$ и дважды интегрируя по частям:
+\textbf{Полное решение.} Функция $v=u-U$ решает задачу $v_t=a^2v_{xx}-bv$, $v(0,t)=0$, $v_x(l,t)=0$, $v(x,0)=x-U(x)$, поэтому $v=\sum D_ne^{-(a^2p_n^2+b)t}\sin p_nx$. Коэффициенты $U$ находим, умножая $U''=\kappa^2(U-u_{\text{ср}})$ на $\sin p_nx$ и дважды интегрируя по частям:
 \[
-\frac2l\int_0^lU\sin p_nx\,dx=\frac2l\cdot\frac{Ap_n+(-1)^nB+\kappa^2\theta/p_n}{p_n^2+\kappa^2}.
+\frac2l\int_0^lU\sin p_nx\,dx=\frac2l\cdot\frac{Ap_n+(-1)^nB+\kappa^2u_{\text{ср}}/p_n}{p_n^2+\kappa^2}.
 \]
 Итак,
 \[
-u(x,t)=U(x)+\sum_{n=1}^{\infty}\Bigl(\frac{2(-1)^{n+1}}{lp_n^2}-\frac2l\cdot\frac{Ap_n+(-1)^nB+\kappa^2\theta/p_n}{p_n^2+\kappa^2}\Bigr)e^{-(a^2p_n^2+b)t}\sin p_nx .
+u(x,t)=U(x)+\sum_{n=1}^{\infty}\Bigl(\frac{2(-1)^{n+1}}{lp_n^2}-\frac2l\cdot\frac{Ap_n+(-1)^nB+\kappa^2u_{\text{ср}}/p_n}{p_n^2+\kappa^2}\Bigr)e^{-(a^2p_n^2+b)t}\sin p_nx .
 \]
 При $b=0$ ($\kappa\to0$) формула переходит в решение задачи 2.
 
-\textbf{Анализ.} Решение стремится к $U$, причём быстрее, чем в задаче 2: показатели затухания увеличились на $b$. С ростом $b$ профиль отходит от прямой $A-Bx$ и внутри стержня приближается к температуре среды $\theta$; отличие от $\theta$ сохраняется в слое толщины порядка $1/\kappa$ у левого торца, где поддерживается температура $A$ (рис.~\ref{fig:p4}). Температура правого торца
+\textbf{Анализ.} Решение стремится к $U$, причём быстрее, чем в задаче 2: показатели затухания увеличились на $b$. С ростом $b$ профиль отходит от прямой $A-Bx$ и внутри стержня приближается к температуре среды $u_{\text{ср}}$; отличие от $u_{\text{ср}}$ сохраняется в слое толщины порядка $1/\kappa$ у левого торца, где поддерживается температура $A$ (рис.~\ref{fig:p4}). Температура правого торца
 \[
-U(l)=\theta+\frac{A-\theta-\frac B\kappa\operatorname{sh}\kappa l}{\operatorname{ch}\kappa l}.
+U(l)=u_{\text{ср}}+\frac{A-u_{\text{ср}}-\frac B\kappa\operatorname{sh}\kappa l}{\operatorname{ch}\kappa l}.
 \]
-При $\theta=0$ и $B>0$ она может стать отрицательной: тепло уходит и через боковую поверхность, и через правый торец.
+При $u_{\text{ср}}=0$ и $B>0$ она может стать отрицательной: тепло уходит и через боковую поверхность, и через правый торец.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\textwidth]{p4}
