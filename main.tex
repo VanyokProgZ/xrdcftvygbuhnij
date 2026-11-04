@@ -1,34 +1,22 @@
 \documentclass[a4paper,12pt,titlepage]{report}
-\usepackage{iftex}
-\ifPDFTeX\PackageError{main}{Use XeLaTeX or LuaLaTeX}{Select XeLaTeX or LuaLaTeX.}\fi
 \usepackage{fontspec}
 \defaultfontfeatures{Ligatures=TeX}
-\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{\setmainfont{DejaVu Serif}}
+\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{\setmainfont{Liberation Serif}}
 \usepackage[main=russian,english]{babel}
-\usepackage{amsmath,amssymb,amsthm,graphicx,geometry,setspace,indentfirst,titlesec,enumitem,caption,pgfplots}
-\graphicspath{{figure/}}
-\pgfplotsset{compat=1.18}
+\usepackage{amsmath,amssymb,graphicx,geometry,setspace,indentfirst,titlesec,enumitem,caption,float}
+\graphicspath{{figure/}{./}}
 \geometry{left=2.5cm,right=1.5cm,top=2cm,bottom=2cm}
 \titleformat{\chapter}[display]{\centering\bfseries}{ГЛАВА \thechapter}{8pt}{\MakeUppercase}
-\titleformat{\section}{\normalsize\bfseries}{\thesection}{1em}{}
-\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+\titleformat{\section}{\normalsize\bfseries}{\thesection.}{1em}{}
 \titlespacing*{\chapter}{0pt}{-20pt}{12pt}
-\titlespacing*{\section}{0pt}{2\baselineskip}{\baselineskip}
-\titlespacing*{\subsection}{0pt}{\baselineskip}{.5\baselineskip}
+\titlespacing*{\section}{0pt}{1.5\baselineskip}{.5\baselineskip}
 \setcounter{tocdepth}{1}
-\setcounter{secnumdepth}{3}
-\renewcommand{\contentsname}{Содержание}
+\addto\captionsrussian{\renewcommand{\contentsname}{Содержание}}
+\DeclareCaptionLabelSeparator{gost}{. }
+\captionsetup{labelsep=gost,font=small}
 \setlist{nosep}
 \counterwithout{equation}{chapter}
-\let\originalsection\section
-\let\originalsubsection\subsection
-\let\originalsubsubsection\subsubsection
-% Темы становятся разделами, их внутренние заголовки — подразделами.
-\newcommand{\topicinput}[1]{\begingroup
-\let\chapter\originalsection
-\let\section\originalsubsection
-\let\subsection\originalsubsubsection
-\input{#1}\endgroup}
+\counterwithout{figure}{chapter}
 \begin{document}
 \singlespacing
 \input{title}
@@ -36,27 +24,13 @@
 \onehalfspacing\setlength{\parindent}{1.25cm}
 \tableofcontents
 \chapter{Теоретическая часть}
-\noindent Вариант 11: первый род на левом торце, второй род на правом.
-В общей нормировке задания используем $u(0,t)=\mu(t)$,
-$-u_x(l,t)=\nu(t)$. В лекциях теплоёмкость записана как $c_{\rm уд}\rho$;
-здесь $c=c_{\rm уд}\rho$ обозначает объёмную теплоёмкость.
-\topicinput{theor_1}
-\topicinput{theor_2}
-\topicinput{theor_3}
-\topicinput{theor_4}
+\input{theor_1}
+\input{theor_3}
+\input{theor_4}
 \chapter{Практическая часть}
-\topicinput{prac_1}
-\topicinput{prac_2}
-\topicinput{prac_3}
-\topicinput{prac_4}
-\topicinput{prac_5}
-\topicinput{prac_6}
-\section{Численная проверка аналитических формул}
-\input{verification}
-\section*{Использованные материалы}
-\addcontentsline{toc}{section}{Использованные материалы}
-Лабораторная работа № 4 <<Распространение тепла в конечном стержне>>,
-вариант 11, стр. 1--4. Книга <<ВсеЛекцииУмф-2.pdf>>: лекция 21,
-стр. PDF 129--132; лекция 22, стр. PDF 133--136; лекция 24,
-стр. PDF 144--147 (метод Фурье и устранение неоднородности границ).
+\input{prac_1}
+\input{prac_2}
+\input{prac_3}
+\input{prac_4}
+\input{prac_5}
 \end{document}

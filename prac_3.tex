@@ -1,42 +1,60 @@
-\chapter{Неоднородные условия на торце и асимптотика решения}
-\section{Индивидуальная постановка}
-В практическом пункте 3 слова <<первая задача>> относятся к практическому пункту 1: боковая поверхность изолирована, распределённых источников нет, начальная температура равна $x$. Поэтому здесь $b=0$, $f=0$, $\phi(x)=x$. Типы границ вновь берутся из строки 11, а не из подбора границ в пункте 1:
-\[u_t=a^2u_{xx},\quad u(0,t)=g(t)=A\cos(\omega_1t)+B\sin(\omega_2t),\quad u_x(l,t)=0,\quad u(x,0)=x.\]
-Пусть $a,l>0$ и сначала $\omega_1,\omega_2>0$. Начальные данные не согласованы с правой границей, поскольку $\phi'(l)=1$. Решение рассматривается при $t>0$, начальное условие восстанавливается в $L^2(0,l)$.
-\section{Решение методом Фурье}
-Замена $u=g+v$ даёт $v_t=a^2v_{xx}-g'$, $v(0,t)=v_x(l,t)=0$, $v(x,0)=x-A$. Обозначим
-\[k_n=\frac{(n+1/2)\pi}{l},\quad \sigma_n=a^2k_n^2,\quad d_n=\frac{2}{lk_n},\quad c_n=\frac2l\left[\frac{(-1)^n}{k_n^2}-\frac A{k_n}\right],\quad n=0,1,\ldots.\]
-Тогда $v_n'+\sigma_nv_n=-d_ng'$, $v_n(0)=c_n$, откуда
-\[\boxed{u(x,t)=g(t)+\sum_{n=0}^{\infty}\sin(k_nx)\left[c_ne^{-\sigma_nt}-d_n\int_0^te^{-\sigma_n(t-\tau)}g'(\tau)\,d\tau\right].}\]
-Здесь $g'=-A\omega_1\sin(\omega_1t)+B\omega_2\cos(\omega_2t)$.
-\section{Установившийся гармонический отклик}
-Положим
-\[q_\omega=\frac{\sqrt{i\omega}}a,\qquad H_\omega(x)=\frac{\cosh(q_\omega(l-x))}{\cosh(q_\omega l)}.\]
-Берём корень с положительной действительной частью. Выполняются $a^2H_\omega''=i\omega H_\omega$, $H_\omega(0)=1$, $H_\omega'(l)=0$. Поэтому
-\[P(x,t)=A\operatorname{Re}(H_{\omega_1}(x)e^{i\omega_1t})+B\operatorname{Im}(H_{\omega_2}(x)e^{i\omega_2t})\]
-есть точное частное решение. Полное решение равно
-\[u(x,t)=P(x,t)+\sum_{n=0}^{\infty}r_ne^{-\sigma_nt}\sin(k_nx),\qquad r_n=\frac2l\int_0^l[\xi-P(\xi,0)]\sin(k_n\xi)\,d\xi.\]
-В частности,
-\[\|u(\cdot,t)-P(\cdot,t)\|_{L^2}\le e^{-a^2\pi^2t/(4l^2)}\|x-P(\cdot,0)\|_{L^2}.\]
-Переходная часть затухает также равномерно при больших временах. При одной активной частоте режим периодический; при двух активных частотах он периодический для рационального отношения частот и квазипериодический для иррационального. При ненулевом гармоническом воздействии предела в общем случае нет. Решение ограничено.
-\section{Возможности заданных гармоник}
-При положительных частотах выбор $A=B=0$ даёт предел нуль. Неограниченный режим и ненулевой постоянный предел в рамках заданных гармоник невозможны. Если разрешить $\omega_1=0$, $B=0$, то $g=A$ и $u\to A$. Таким образом, требование подобрать растущий режим требует выхода за фиксированное гармоническое семейство. Далее этот выход указан явно: сохраняем индивидуальные типы границ и нулевое правое условие, но меняем функцию $g$.
-\section{Аналитический подбор воздействий}
-\subsection{Нулевой предел}
-Выберем $g(t)=Ce^{-rt}$, $C\ne0$, $0<r<a^2\pi^2/(4l^2)$. При $\eta=\sqrt r/a$ положим
-\[H_-(x)=\frac{\cos(\eta(l-x))}{\cos(\eta l)}.\]
-Знаменатель ненулевой, $a^2H_-''=-rH_-$, $H_-(0)=1$, $H_-'(l)=0$. Точное решение:
-\[u(x,t)=Ce^{-rt}H_-(x)+\sum_{n=0}^{\infty}z_ne^{-\sigma_nt}\sin(k_nx),\quad z_n=\frac2l\int_0^l[\xi-CH_-(\xi)]\sin(k_n\xi)\,d\xi.\]
-Обе части затухают, поэтому $u\to0$ равномерно.
-\subsection{Неограниченный рост}
-Выберем $g(t)=Ce^{rt}$, $C,r>0$, и
-\[H_+(x)=\frac{\cosh(\sqrt r(l-x)/a)}{\cosh(\sqrt rl/a)}.\]
-Тогда $a^2H_+''=rH_+$, $H_+(0)=1$, $H_+'(l)=0$ и
-\[u(x,t)=Ce^{rt}H_+(x)+\sum_{n=0}^{\infty}z_ne^{-\sigma_nt}\sin(k_nx),\quad z_n=\frac2l\int_0^l[\xi-CH_+(\xi)]\sin(k_n\xi)\,d\xi.\]
-Поскольку $\min_{[0,l]}H_+>0$, температура стремится к $+\infty$ равномерно по всей длине.
-\subsection{Постоянный предел}
-При $g(t)=C\ne0$ получаем
-\[u(x,t)=C+\sum_{n=0}^{\infty}\frac2l\left[\frac{(-1)^n}{k_n^2}-\frac C{k_n}\right]e^{-\sigma_nt}\sin(k_nx)\longrightarrow C.\]
-Это постоянный предельный режим, а не стационарность с начального момента: начальная функция $x$ не является константой.
-\section{Границы применимости}
-Обобщение с боковым охлаждением относится к другой постановке: при $b>0$ скорости становятся $a^2k_n^2+b$, а в гармоническом отклике $\sqrt{i\omega}$ заменяется на $\sqrt{b+i\omega}$. При $f=0$, $g=C$ предельный профиль равен $C\cosh(\sqrt b(l-x)/a)/\cosh(\sqrt bl/a)$ и не является пространственной константой. В этой теме обязательное решение выполнено именно при $b=f=0$; боковой теплообмен рассматривается в следующей теме.
+\section{Задача 3}
+Решаем задачу 1 ($b=0$, $f=0$, $\varphi=x$) с граничными условиями варианта 11:
+\[
+u_t=a^2u_{xx},\qquad u(x,0)=x,\qquad u(0,t)=\mu(t)=A\cos\omega_1t+B\sin\omega_2t,\qquad -u_x(l,t)=0 .
+\]
+\textbf{Устранение неоднородности.} Функция $w=\mu(t)$ удовлетворяет обоим граничным условиям. Положим $u=\mu(t)+v$:
+\[
+v_t=a^2v_{xx}-\mu'(t),\qquad v(0,t)=0,\qquad v_x(l,t)=0,\qquad v(x,0)=x-A .
+\]
+Ищем $v=\sum_{n=1}^\infty T_n(t)\sin p_nx$, $p_n=\frac{(2n-1)\pi}{2l}$, $\lambda_n=a^2p_n^2$. Раскладывая $1=\sum\frac{2}{lp_n}\sin p_nx$ и $x=\sum\frac{2(-1)^{n+1}}{lp_n^2}\sin p_nx$, получаем
+\[
+T_n'+\lambda_nT_n=-\frac{2}{lp_n}\mu'(t),\qquad T_n(0)=\frac{2(-1)^{n+1}}{lp_n^2}-\frac{2A}{lp_n},
+\]
+\[
+T_n(t)=T_n(0)e^{-\lambda_nt}-\frac{2}{lp_n}\int_0^te^{-\lambda_n(t-\tau)}\mu'(\tau)\,d\tau .
+\]
+Для $\mu'(\tau)=-A\omega_1\sin\omega_1\tau+B\omega_2\cos\omega_2\tau$ нужны интегралы
+\[
+\int_0^te^{-\lambda(t-\tau)}\sin\omega\tau\,d\tau=\frac{\lambda\sin\omega t-\omega\cos\omega t+\omega e^{-\lambda t}}{\lambda^2+\omega^2},
+\]
+\[
+\int_0^te^{-\lambda(t-\tau)}\cos\omega\tau\,d\tau=\frac{\lambda\cos\omega t+\omega\sin\omega t-\lambda e^{-\lambda t}}{\lambda^2+\omega^2}.
+\]
+Окончательно
+\[
+\begin{aligned}
+u(x,t)={}&A\cos\omega_1t+B\sin\omega_2t+\sum_{n=1}^{\infty}\Bigl(\frac{2(-1)^{n+1}}{lp_n^2}-\frac{2A}{lp_n}\Bigr)e^{-\lambda_nt}\sin p_nx\\
+&+\sum_{n=1}^{\infty}\frac{2}{lp_n}\Bigl[A\omega_1\frac{\lambda_n\sin\omega_1t-\omega_1\cos\omega_1t+\omega_1e^{-\lambda_nt}}{\lambda_n^2+\omega_1^2}\\
+&\qquad\qquad-B\omega_2\frac{\lambda_n\cos\omega_2t+\omega_2\sin\omega_2t-\lambda_ne^{-\lambda_nt}}{\lambda_n^2+\omega_2^2}\Bigr]\sin p_nx .
+\end{aligned}
+\]
+
+\textbf{Поведение при $t\to\infty$.} Все слагаемые с $e^{-\lambda_nt}$ затухают, начальная температура забывается. Остаются вынужденные колебания с частотами $\omega_1,\omega_2$. Их сумму можно записать в замкнутом виде (функция $e^{i\omega t}Y(x)$ с $a^2Y''=i\omega Y$, $Y(0)=1$, $Y'(l)=0$):
+\[
+u(x,t)\approx A\,\mathrm{Re}\Bigl[e^{i\omega_1t}\frac{\operatorname{ch}s_1(l-x)}{\operatorname{ch}s_1l}\Bigr]+B\,\mathrm{Im}\Bigl[e^{i\omega_2t}\frac{\operatorname{ch}s_2(l-x)}{\operatorname{ch}s_2l}\Bigr],\qquad s_j=(1+i)\sqrt{\frac{\omega_j}{2a^2}} .
+\]
+Амплитуда колебаний убывает от левого торца вглубь стержня, фаза запаздывает, тем сильнее, чем больше частота. Решение ограничено при любых вещественных $A,B,\omega_1,\omega_2$: так как $|\mu'|\le M=|A|\omega_1+|B|\omega_2$,
+\[
+\Bigl|\int_0^te^{-\lambda_n(t-\tau)}\mu'(\tau)d\tau\Bigr|\le\frac{M}{\lambda_n},\qquad
+|u|\le|A|+|B|+\sum_{n}|T_n(0)|e^{-\lambda_nt}+M\sum_{n}\frac{2}{lp_n\lambda_n},
+\]
+а последний ряд сходится ($\sim1/n^3$).
+
+\textbf{Подбор неоднородностей} (рис.~\ref{fig:p3}).
+\begin{itemize}
+\item \emph{Решение стремится к нулю}, если $A=B=0$ ($\mu\equiv0$). Тогда остаётся только $u=\sum\frac{2(-1)^{n+1}}{lp_n^2}e^{-\lambda_nt}\sin p_nx\to0$: тепло уходит через левый торец с нулевой температурой.
+\item \emph{Решение стремится к константе}, если $\omega_1=0$, $B=0$, т.\,е. $\mu\equiv A$. Тогда в формуле остаются $A$ и затухающие слагаемые, $u\to A$; это задача 2 при $B=0$.
+\item \emph{Неограниченное решение.} Как показано выше, при вещественных параметрах заданного вида решение ограничено. Неограниченность возникает при неограниченной неоднородности, например в пределе $\omega_2\to0$, $B\omega_2=C$, когда $B\sin\omega_2t\to Ct$. При $\mu=Ct$ имеем $\mu'=C$ и
+\[
+T_n=\frac{2(-1)^{n+1}}{lp_n^2}e^{-\lambda_nt}-\frac{2C}{lp_n\lambda_n}\bigl(1-e^{-\lambda_nt}\bigr),\qquad
+u(x,t)\approx C\Bigl(t-\frac{x(2l-x)}{2a^2}\Bigr)\to\infty,
+\]
+где использовано $\sum\frac{2}{lp_n^3}\sin p_nx=\frac{x(2l-x)}{2}$.
+\end{itemize}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{p3}
+\caption{Температура в середине стержня $u(l/2,t)$ при $l=1$, $a=1$: (а) общий случай; (б) $u\to0$; (в) $u\to A$; (г) неограниченный рост}
+\label{fig:p3}
+\end{figure}
