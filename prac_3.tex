@@ -7,46 +7,46 @@ u_t=a^2u_{xx},\qquad u(x,0)=x,\qquad u(0,t)=\mu(t)=A\cos\omega_1t+B\sin\omega_2t
 \[
 v_t=a^2v_{xx}-\mu'(t),\qquad v(0,t)=0,\qquad v_x(l,t)=0,\qquad v(x,0)=x-A .
 \]
-Решаем методом Фурье. Для однородного уравнения решения вида $v(x,t)=X(x)T(t)$ с условиями $X(0)=0$, $X'(l)=0$ дают собственные функции $X_n=\sin p_nx$, $p_n=\frac{(2n-1)\pi}{2l}$ (п.~\ref{sec:green}). Поэтому решение ищем в виде $v=\sum_{n=1}^\infty T_n(t)\sin p_nx$, $\lambda_n=a^2p_n^2$. Раскладывая $1=\sum\frac{2}{lp_n}\sin p_nx$ и $x=\sum\frac{2(-1)^{n+1}}{lp_n^2}\sin p_nx$, получаем
+Решаем методом Фурье. Для однородного уравнения решения вида $v(x,t)=X(x)T(t)$ с условиями $X(0)=0$, $X'(l)=0$ дают собственные функции $X_n=\sin \lambda_nx$, $\lambda_n=\frac{(2n-1)\pi}{2l}$ (п.~\ref{sec:green}). Поэтому решение ищем в виде $v=\sum_{n=1}^\infty T_n(t)\sin \lambda_nx$, $\sigma_n=a^2\lambda_n^2$. Раскладывая $1=\sum\frac{2}{l\lambda_n}\sin \lambda_nx$ и $x=\sum\frac{2(-1)^{n+1}}{l\lambda_n^2}\sin \lambda_nx$, получаем
 \[
-T_n'+\lambda_nT_n=-\frac{2}{lp_n}\mu'(t),\qquad T_n(0)=\frac{2(-1)^{n+1}}{lp_n^2}-\frac{2A}{lp_n},
+T_n'+\sigma_nT_n=-\frac{2}{l\lambda_n}\mu'(t),\qquad T_n(0)=\frac{2(-1)^{n+1}}{l\lambda_n^2}-\frac{2A}{l\lambda_n},
 \]
 \[
-T_n(t)=T_n(0)e^{-\lambda_nt}-\frac{2}{lp_n}\int_0^te^{-\lambda_n(t-\tau)}\mu'(\tau)\,d\tau .
+T_n(t)=T_n(0)e^{-\sigma_nt}-\frac{2}{l\lambda_n}\int_0^te^{-\sigma_n(t-\tau)}\mu'(\tau)\,d\tau .
 \]
 Для $\mu'(\tau)=-A\omega_1\sin\omega_1\tau+B\omega_2\cos\omega_2\tau$ нужны интегралы
 \[
-I_s(\lambda,\omega,t)=\int_0^te^{-\lambda(t-\tau)}\sin\omega\tau\,d\tau=\frac{\lambda\sin\omega t-\omega\cos\omega t+\omega e^{-\lambda t}}{\lambda^2+\omega^2},
+I_s(\sigma,\omega,t)=\int_0^te^{-\sigma(t-\tau)}\sin\omega\tau\,d\tau=\frac{\sigma\sin\omega t-\omega\cos\omega t+\omega e^{-\sigma t}}{\sigma^2+\omega^2},
 \]
 \[
-I_c(\lambda,\omega,t)=\int_0^te^{-\lambda(t-\tau)}\cos\omega\tau\,d\tau=\frac{\lambda\cos\omega t+\omega\sin\omega t-\lambda e^{-\lambda t}}{\lambda^2+\omega^2}.
+I_c(\sigma,\omega,t)=\int_0^te^{-\sigma(t-\tau)}\cos\omega\tau\,d\tau=\frac{\sigma\cos\omega t+\omega\sin\omega t-\sigma e^{-\sigma t}}{\sigma^2+\omega^2}.
 \]
 Окончательно
 \[
-u(x,t)=A\cos\omega_1t+B\sin\omega_2t+\sum_{n=1}^{\infty}\Bigl[T_n(0)e^{-\lambda_nt}+\frac{2}{lp_n}\bigl(A\omega_1I_s(\lambda_n,\omega_1,t)-B\omega_2I_c(\lambda_n,\omega_2,t)\bigr)\Bigr]\sin p_nx .
+u(x,t)=A\cos\omega_1t+B\sin\omega_2t+\sum_{n=1}^{\infty}\Bigl[T_n(0)e^{-\sigma_nt}+\frac{2}{l\lambda_n}\bigl(A\omega_1I_s(\sigma_n,\omega_1,t)-B\omega_2I_c(\sigma_n,\omega_2,t)\bigr)\Bigr]\sin \lambda_nx .
 \]
 
-\textbf{Поведение при $t\to\infty$.} Все слагаемые с $e^{-\lambda_nt}$ затухают, начальная температура забывается. Остаются вынужденные колебания с частотами $\omega_1,\omega_2$. Их сумму можно записать в замкнутом виде (функция $e^{i\omega t}Y(x)$ с $a^2Y''=i\omega Y$, $Y(0)=1$, $Y'(l)=0$):
+\textbf{Поведение при $t\to\infty$.} Все слагаемые с $e^{-\sigma_nt}$ затухают, начальная температура забывается. Остаются вынужденные колебания с частотами $\omega_1,\omega_2$. Их сумму можно записать в замкнутом виде (функция $e^{i\omega t}Y(x)$ с $a^2Y''=i\omega Y$, $Y(0)=1$, $Y'(l)=0$):
 \[
 u(x,t)\approx A\,\mathrm{Re}\Bigl[e^{i\omega_1t}\frac{\operatorname{ch}s_1(l-x)}{\operatorname{ch}s_1l}\Bigr]+B\,\mathrm{Im}\Bigl[e^{i\omega_2t}\frac{\operatorname{ch}s_2(l-x)}{\operatorname{ch}s_2l}\Bigr],\qquad s_j=(1+i)\sqrt{\frac{\omega_j}{2a^2}} .
 \]
 Амплитуда колебаний убывает от левого торца вглубь стержня, фаза запаздывает, тем сильнее, чем больше частота. Решение ограничено при любых вещественных $A,B,\omega_1,\omega_2$: так как $|\mu'|\le M=|A|\omega_1+|B|\omega_2$,
 \[
-\Bigl|\int_0^te^{-\lambda_n(t-\tau)}\mu'(\tau)d\tau\Bigr|\le\frac{M}{\lambda_n},\qquad
-|u|\le|A|+|B|+\sum_{n}|T_n(0)|e^{-\lambda_nt}+M\sum_{n}\frac{2}{lp_n\lambda_n},
+\Bigl|\int_0^te^{-\sigma_n(t-\tau)}\mu'(\tau)d\tau\Bigr|\le\frac{M}{\sigma_n},\qquad
+|u|\le|A|+|B|+\sum_{n}|T_n(0)|e^{-\sigma_nt}+M\sum_{n}\frac{2}{l\lambda_n\sigma_n},
 \]
 а последний ряд сходится ($\sim1/n^3$).
 
 \textbf{Подбор неоднородностей} (рис.~\ref{fig:p3}).
 \begin{itemize}
-\item \emph{Решение стремится к нулю}, если $A=B=0$ ($\mu\equiv0$). Тогда остаётся только $u=\sum\frac{2(-1)^{n+1}}{lp_n^2}e^{-\lambda_nt}\sin p_nx\to0$: тепло уходит через левый торец с нулевой температурой.
+\item \emph{Решение стремится к нулю}, если $A=B=0$ ($\mu\equiv0$). Тогда остаётся только $u=\sum\frac{2(-1)^{n+1}}{l\lambda_n^2}e^{-\sigma_nt}\sin \lambda_nx\to0$: тепло уходит через левый торец с нулевой температурой.
 \item \emph{Решение стремится к константе}, если $\omega_1=0$, $B=0$, т.\,е. $\mu\equiv A$. Тогда в формуле остаются $A$ и затухающие слагаемые, $u\to A$; это задача 2 при $B=0$.
 \item \emph{Неограниченное решение.} Как показано выше, при вещественных параметрах заданного вида решение ограничено. Неограниченность возникает при неограниченной неоднородности, например в пределе $\omega_2\to0$, $B\omega_2=C$, когда $B\sin\omega_2t\to Ct$. При $\mu=Ct$ имеем $\mu'=C$ и
 \[
-T_n=\frac{2(-1)^{n+1}}{lp_n^2}e^{-\lambda_nt}-\frac{2C}{lp_n\lambda_n}\bigl(1-e^{-\lambda_nt}\bigr),\qquad
+T_n=\frac{2(-1)^{n+1}}{l\lambda_n^2}e^{-\sigma_nt}-\frac{2C}{l\lambda_n\sigma_n}\bigl(1-e^{-\sigma_nt}\bigr),\qquad
 u(x,t)\approx C\Bigl(t-\frac{x(2l-x)}{2a^2}\Bigr)\to\infty,
 \]
-где использовано $\sum\frac{2}{lp_n^3}\sin p_nx=\frac{x(2l-x)}{2}$.
+где использовано $\sum\frac{2}{l\lambda_n^3}\sin \lambda_nx=\frac{x(2l-x)}{2}$.
 \end{itemize}
 \begin{figure}[H]
 \centering

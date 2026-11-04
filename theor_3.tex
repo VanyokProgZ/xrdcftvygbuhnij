@@ -5,22 +5,22 @@ u_t=a^2u_{xx}-bu,\qquad u(x,0)=\varphi(x),\qquad u(0,t)=0,\qquad u_x(l,t)=0 .
 \]
 Решаем методом Фурье: ищем решения вида $u(x,t)=X(x)T(t)$. Подставляя в уравнение и разделяя переменные, получаем
 \[
-\frac{T'+bT}{a^2T}=\frac{X''}{X}=-\lambda,\qquad X''+\lambda X=0,\quad X(0)=0,\quad X'(l)=0 .
+\frac{T'+bT}{a^2T}=\frac{X''}{X}=-\lambda^2,\qquad X''+\lambda^2X=0,\quad X(0)=0,\quad X'(l)=0 .
 \]
-Из $X(0)=0$ следует $X=\sin\sqrt\lambda x$, а из $X'(l)=0$~--- $\cos\sqrt\lambda l=0$. Отсюда
+Из $X(0)=0$ следует $X=\sin\lambda x$, а из $X'(l)=0$~--- $\cos\lambda l=0$. Отсюда
 \[
-\lambda_n=p_n^2,\qquad p_n=\frac{(2n-1)\pi}{2l},\qquad X_n(x)=\sin p_nx,\qquad n=1,2,\dots,
+\lambda_n=\frac{(2n-1)\pi}{2l},\qquad X_n(x)=\sin \lambda_nx,\qquad n=1,2,\dots,
 \]
 \[
-T_n(t)=A_ne^{-(a^2p_n^2+b)t},\qquad \|X_n\|^2=\int_0^l\sin^2p_nx\,dx=\frac l2 .
+T_n(t)=A_ne^{-(a^2\lambda_n^2+b)t},\qquad \|X_n\|^2=\int_0^l\sin^2\lambda_nx\,dx=\frac l2 .
 \]
-Ряд $u=\sum A_ne^{-(a^2p_n^2+b)t}\sin p_nx$ удовлетворяет начальному условию при
+Ряд $u=\sum A_ne^{-(a^2\lambda_n^2+b)t}\sin \lambda_nx$ удовлетворяет начальному условию при
 \[
-A_n=\frac2l\int_0^l\varphi(\xi)\sin p_n\xi\,d\xi .
+A_n=\frac2l\int_0^l\varphi(\xi)\sin \lambda_n\xi\,d\xi .
 \] Подставляя $A_n$ и меняя порядок суммирования и интегрирования, получаем
 \[
 u(x,t)=\int_0^lG(x,\xi,t)\varphi(\xi)\,d\xi,\qquad
-G(x,\xi,t)=\frac2l\sum_{n=1}^{\infty}e^{-(a^2p_n^2+b)t}\sin p_nx\,\sin p_n\xi .
+G(x,\xi,t)=\frac2l\sum_{n=1}^{\infty}e^{-(a^2\lambda_n^2+b)t}\sin \lambda_nx\,\sin \lambda_n\xi .
 \]
 
 \textbf{Физический смысл.} Если $\varphi(x)=\delta(x-\xi)$, то $u=G(x,\xi,t)$. Значит, $G(x,\xi,t)$~--- температура в точке $x$ в момент $t$, если в начальный момент в точке $\xi$ мгновенно выделилось количество тепла $c\rho S$ (мгновенный точечный источник), левый торец поддерживается при нулевой температуре, правый теплоизолирован, а на боковой поверхности идёт теплообмен со средой нулевой температуры. Тепло, выделившееся в точке $\xi$ в момент $\tau$, даёт вклад $G(x,\xi,t-\tau)$, поэтому через $G$ выражается и действие источников $f$. При этом $G(0,\xi,t)=0$, $G_x(l,\xi,t)=0$, $G(x,\xi,t)\to\delta(x-\xi)$ при $t\to+0$, а $\int_0^lG\,dx$~--- доля тепла, оставшаяся в стержне к моменту $t$.

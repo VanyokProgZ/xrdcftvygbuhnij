@@ -11,13 +11,13 @@ U(x)=A-Bx .
 \[
 v_t=a^2v_{xx},\qquad v(0,t)=0,\qquad v_x(l,t)=0,\qquad v(x,0)=(1+B)x-A .
 \]
-Решаем методом Фурье: ищем решения вида $v(x,t)=X(x)T(t)$. Как в п.~\ref{sec:green} (при $b=0$), получаем $X_n=\sin p_nx$, $p_n=\frac{(2n-1)\pi}{2l}$, $T_n=D_ne^{-a^2p_n^2t}$. Коэффициенты $D_n$ находим из начального условия с помощью интегралов
+Решаем методом Фурье: ищем решения вида $v(x,t)=X(x)T(t)$. Как в п.~\ref{sec:green} (при $b=0$), получаем $X_n=\sin \lambda_nx$, $\lambda_n=\frac{(2n-1)\pi}{2l}$, $T_n=D_ne^{-a^2\lambda_n^2t}$. Коэффициенты $D_n$ находим из начального условия с помощью интегралов
 \[
-\frac2l\int_0^l\sin p_nx\,dx=\frac{2}{lp_n},\qquad \frac2l\int_0^lx\sin p_nx\,dx=\frac{2(-1)^{n+1}}{lp_n^2}
+\frac2l\int_0^l\sin \lambda_nx\,dx=\frac{2}{l\lambda_n},\qquad \frac2l\int_0^lx\sin \lambda_nx\,dx=\frac{2(-1)^{n+1}}{l\lambda_n^2}
 \]
 получаем
 \[
-u(x,t)=A-Bx+\sum_{n=1}^{\infty}\Bigl(\frac{2(1+B)(-1)^{n+1}}{lp_n^2}-\frac{2A}{lp_n}\Bigr)e^{-a^2p_n^2t}\sin p_nx\ \xrightarrow[t\to\infty]{}\ A-Bx .
+u(x,t)=A-Bx+\sum_{n=1}^{\infty}\Bigl(\frac{2(1+B)(-1)^{n+1}}{l\lambda_n^2}-\frac{2A}{l\lambda_n}\Bigr)e^{-a^2\lambda_n^2t}\sin \lambda_nx\ \xrightarrow[t\to\infty]{}\ A-Bx .
 \]
 
 \textbf{Зависимость от $A$ и $B$.} Стационарный режим~--- линейная функция, не зависящая от начальной температуры.
