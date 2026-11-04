@@ -26,11 +26,11 @@ I_c(\sigma,\omega,t)=\int_0^te^{-\sigma(t-\tau)}\cos\omega\tau\,d\tau=\frac{\sig
 u(x,t)=A\cos\omega_1t+B\sin\omega_2t+\sum_{n=1}^{\infty}\Bigl[T_n(0)e^{-\sigma_nt}+\frac{2}{l\lambda_n}\bigl(A\omega_1I_s(\sigma_n,\omega_1,t)-B\omega_2I_c(\sigma_n,\omega_2,t)\bigr)\Bigr]\sin \lambda_nx .
 \]
 
-\textbf{Поведение при $t\to\infty$.} Все слагаемые с $e^{-\sigma_nt}$ затухают, начальная температура забывается. Остаются вынужденные колебания с частотами $\omega_1,\omega_2$. Их сумму можно записать в замкнутом виде (функция $e^{i\omega t}Y(x)$ с $a^2Y''=i\omega Y$, $Y(0)=1$, $Y'(l)=0$):
-\[
-u(x,t)\approx A\,\mathrm{Re}\Bigl[e^{i\omega_1t}\frac{\operatorname{ch}s_1(l-x)}{\operatorname{ch}s_1l}\Bigr]+B\,\mathrm{Im}\Bigl[e^{i\omega_2t}\frac{\operatorname{ch}s_2(l-x)}{\operatorname{ch}s_2l}\Bigr],\qquad s_j=(1+i)\sqrt{\frac{\omega_j}{2a^2}} .
-\]
-Амплитуда колебаний убывает от левого торца вглубь стержня, фаза запаздывает, тем сильнее, чем больше частота. Решение ограничено при любых вещественных $A,B,\omega_1,\omega_2$: так как $|\mu'|\le M=|A|\omega_1+|B|\omega_2$,
+\textbf{Поведение при $t\to\infty$.} Все слагаемые с $e^{-\sigma_nt}$ затухают, начальная температура забывается. В $I_s$, $I_c$ остаются только гармоники, поэтому при больших $t$
+\begin{multline*}
+u(x,t)\approx A\cos\omega_1t+B\sin\omega_2t+{}\\+\sum_{n=1}^{\infty}\frac{2}{l\lambda_n}\Bigl[A\omega_1\frac{\sigma_n\sin\omega_1t-\omega_1\cos\omega_1t}{\sigma_n^2+\omega_1^2}-B\omega_2\frac{\sigma_n\cos\omega_2t+\omega_2\sin\omega_2t}{\sigma_n^2+\omega_2^2}\Bigr]\sin\lambda_nx,
+\end{multline*}
+т.\,е. стержень совершает вынужденные колебания с частотами $\omega_1,\omega_2$, не зависящие от начальной температуры. Решение ограничено при любых вещественных $A,B,\omega_1,\omega_2$: так как $|\mu'|\le M=|A|\omega_1+|B|\omega_2$,
 \[
 \Bigl|\int_0^te^{-\sigma_n(t-\tau)}\mu'(\tau)d\tau\Bigr|\le\frac{M}{\sigma_n},\qquad
 |u|\le|A|+|B|+\sum_{n}|T_n(0)|e^{-\sigma_nt}+M\sum_{n}\frac{2}{l\lambda_n\sigma_n},
