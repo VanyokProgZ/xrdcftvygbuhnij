@@ -16,18 +16,14 @@ T_n(t)=T_n(0)e^{-\lambda_nt}-\frac{2}{lp_n}\int_0^te^{-\lambda_n(t-\tau)}\mu'(\t
 \]
 Для $\mu'(\tau)=-A\omega_1\sin\omega_1\tau+B\omega_2\cos\omega_2\tau$ нужны интегралы
 \[
-\int_0^te^{-\lambda(t-\tau)}\sin\omega\tau\,d\tau=\frac{\lambda\sin\omega t-\omega\cos\omega t+\omega e^{-\lambda t}}{\lambda^2+\omega^2},
+I_s(\lambda,\omega,t)=\int_0^te^{-\lambda(t-\tau)}\sin\omega\tau\,d\tau=\frac{\lambda\sin\omega t-\omega\cos\omega t+\omega e^{-\lambda t}}{\lambda^2+\omega^2},
 \]
 \[
-\int_0^te^{-\lambda(t-\tau)}\cos\omega\tau\,d\tau=\frac{\lambda\cos\omega t+\omega\sin\omega t-\lambda e^{-\lambda t}}{\lambda^2+\omega^2}.
+I_c(\lambda,\omega,t)=\int_0^te^{-\lambda(t-\tau)}\cos\omega\tau\,d\tau=\frac{\lambda\cos\omega t+\omega\sin\omega t-\lambda e^{-\lambda t}}{\lambda^2+\omega^2}.
 \]
 Окончательно
 \[
-\begin{aligned}
-u(x,t)={}&A\cos\omega_1t+B\sin\omega_2t+\sum_{n=1}^{\infty}\Bigl(\frac{2(-1)^{n+1}}{lp_n^2}-\frac{2A}{lp_n}\Bigr)e^{-\lambda_nt}\sin p_nx\\
-&+\sum_{n=1}^{\infty}\frac{2}{lp_n}\Bigl[A\omega_1\frac{\lambda_n\sin\omega_1t-\omega_1\cos\omega_1t+\omega_1e^{-\lambda_nt}}{\lambda_n^2+\omega_1^2}\\
-&\qquad\qquad-B\omega_2\frac{\lambda_n\cos\omega_2t+\omega_2\sin\omega_2t-\lambda_ne^{-\lambda_nt}}{\lambda_n^2+\omega_2^2}\Bigr]\sin p_nx .
-\end{aligned}
+u(x,t)=A\cos\omega_1t+B\sin\omega_2t+\sum_{n=1}^{\infty}\Bigl[T_n(0)e^{-\lambda_nt}+\frac{2}{lp_n}\bigl(A\omega_1I_s(\lambda_n,\omega_1,t)-B\omega_2I_c(\lambda_n,\omega_2,t)\bigr)\Bigr]\sin p_nx .
 \]
 
 \textbf{Поведение при $t\to\infty$.} Все слагаемые с $e^{-\lambda_nt}$ затухают, начальная температура забывается. Остаются вынужденные колебания с частотами $\omega_1,\omega_2$. Их сумму можно записать в замкнутом виде (функция $e^{i\omega t}Y(x)$ с $a^2Y''=i\omega Y$, $Y(0)=1$, $Y'(l)=0$):
